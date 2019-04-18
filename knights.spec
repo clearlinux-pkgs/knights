@@ -5,12 +5,12 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : knights
-Version  : 18.12.3
-Release  : 3
-URL      : https://download.kde.org/stable/applications/18.12.3/src/knights-18.12.3.tar.xz
-Source0  : https://download.kde.org/stable/applications/18.12.3/src/knights-18.12.3.tar.xz
-Source99 : https://download.kde.org/stable/applications/18.12.3/src/knights-18.12.3.tar.xz.sig
-Summary  : No detailed summary available
+Version  : 19.04.0
+Release  : 4
+URL      : https://download.kde.org/stable/applications/19.04.0/src/knights-19.04.0.tar.xz
+Source0  : https://download.kde.org/stable/applications/19.04.0/src/knights-19.04.0.tar.xz
+Source99 : https://download.kde.org/stable/applications/19.04.0/src/knights-19.04.0.tar.xz.sig
+Summary  : Chess board by KDE with XBoard protocol support
 Group    : Development/Tools
 License  : GPL-2.0 GPL-3.0
 Requires: knights-bin = %{version}-%{release}
@@ -24,8 +24,13 @@ BuildRequires : libkdegames-dev
 BuildRequires : plasma-framework-dev
 
 %description
-Sound files taken from pychess (http://pychess.org/).
-Original files were renamed as follows:
+###############################################################
+General information
+###############################################################
+https://github.com/google/sanitizers/wiki
+http://clang.llvm.org/docs/index.html
+https://llvm.org/svn/llvm-project/compiler-rt/trunk/lib/asan/scripts/asan_symbolize.py
+http://developerblog.redhat.com/2014/10/16/gcc-undefined-behavior-sanitizer-ubsan/
 
 %package bin
 Summary: bin components for the knights package.
@@ -70,23 +75,22 @@ locales components for the knights package.
 
 
 %prep
-%setup -q -n knights-18.12.3
+%setup -q -n knights-19.04.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1552003204
+export SOURCE_DATE_EPOCH=1555617280
 mkdir -p clr-build
 pushd clr-build
-export LDFLAGS="${LDFLAGS} -fno-lto"
 %cmake ..
-make  %{?_smp_mflags} VERBOSE=1
+make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1552003204
+export SOURCE_DATE_EPOCH=1555617280
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/knights
 cp LICENSE %{buildroot}/usr/share/package-licenses/knights/LICENSE
