@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : knights
-Version  : 19.04.3
-Release  : 8
-URL      : https://download.kde.org/stable/applications/19.04.3/src/knights-19.04.3.tar.xz
-Source0  : https://download.kde.org/stable/applications/19.04.3/src/knights-19.04.3.tar.xz
-Source99 : https://download.kde.org/stable/applications/19.04.3/src/knights-19.04.3.tar.xz.sig
+Version  : 19.08.0
+Release  : 9
+URL      : https://download.kde.org/stable/applications/19.08.0/src/knights-19.08.0.tar.xz
+Source0  : https://download.kde.org/stable/applications/19.08.0/src/knights-19.08.0.tar.xz
+Source1 : https://download.kde.org/stable/applications/19.08.0/src/knights-19.08.0.tar.xz.sig
 Summary  : Chess board by KDE with XBoard protocol support
 Group    : Development/Tools
 License  : GPL-2.0 GPL-3.0
@@ -75,16 +75,17 @@ locales components for the knights package.
 
 
 %prep
-%setup -q -n knights-19.04.3
+%setup -q -n knights-19.08.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1562876630
+export SOURCE_DATE_EPOCH=1565904719
 mkdir -p clr-build
 pushd clr-build
+# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -98,7 +99,7 @@ make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1562876630
+export SOURCE_DATE_EPOCH=1565904719
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/knights
 cp LICENSE %{buildroot}/usr/share/package-licenses/knights/LICENSE
@@ -145,7 +146,7 @@ popd
 /usr/share/knights/themes/xboard2.svgz
 /usr/share/kxmlgui5/knights/knightsui.rc
 /usr/share/metainfo/org.kde.knights.appdata.xml
-/usr/share/xdg/knights.categories
+/usr/share/qlogging-categories5/knights.categories
 /usr/share/xdg/knights.knsrc
 
 %files doc
