@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : knights
-Version  : 19.08.2
-Release  : 11
-URL      : https://download.kde.org/stable/applications/19.08.2/src/knights-19.08.2.tar.xz
-Source0  : https://download.kde.org/stable/applications/19.08.2/src/knights-19.08.2.tar.xz
-Source1 : https://download.kde.org/stable/applications/19.08.2/src/knights-19.08.2.tar.xz.sig
+Version  : 19.08.3
+Release  : 12
+URL      : https://download.kde.org/stable/applications/19.08.3/src/knights-19.08.3.tar.xz
+Source0  : https://download.kde.org/stable/applications/19.08.3/src/knights-19.08.3.tar.xz
+Source1 : https://download.kde.org/stable/applications/19.08.3/src/knights-19.08.3.tar.xz.sig
 Summary  : Chess board by KDE with XBoard protocol support
 Group    : Development/Tools
 License  : GPL-2.0 GPL-3.0
@@ -75,14 +75,14 @@ locales components for the knights package.
 
 
 %prep
-%setup -q -n knights-19.08.2
+%setup -q -n knights-19.08.3
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1570750014
+export SOURCE_DATE_EPOCH=1573174082
 mkdir -p clr-build
 pushd clr-build
 # -Werror is for werrorists
@@ -99,11 +99,11 @@ make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1570750014
+export SOURCE_DATE_EPOCH=1573174082
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/knights
-cp LICENSE %{buildroot}/usr/share/package-licenses/knights/LICENSE
-cp sounds/LICENSE %{buildroot}/usr/share/package-licenses/knights/sounds_LICENSE
+cp %{_builddir}/knights-19.08.3/LICENSE %{buildroot}/usr/share/package-licenses/knights/06877624ea5c77efe3b7e39b0f909eda6e25a4ec
+cp %{_builddir}/knights-19.08.3/sounds/LICENSE %{buildroot}/usr/share/package-licenses/knights/8624bcdae55baeef00cd11d5dfcfa60f68710a02
 pushd clr-build
 %make_install
 popd
@@ -238,8 +238,8 @@ popd
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/knights/LICENSE
-/usr/share/package-licenses/knights/sounds_LICENSE
+/usr/share/package-licenses/knights/06877624ea5c77efe3b7e39b0f909eda6e25a4ec
+/usr/share/package-licenses/knights/8624bcdae55baeef00cd11d5dfcfa60f68710a02
 
 %files locales -f knights.lang
 %defattr(-,root,root,-)
