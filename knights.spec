@@ -5,12 +5,12 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : knights
-Version  : 20.04.0
-Release  : 17
-URL      : https://download.kde.org/stable/release-service/20.04.0/src/knights-20.04.0.tar.xz
-Source0  : https://download.kde.org/stable/release-service/20.04.0/src/knights-20.04.0.tar.xz
-Source1  : https://download.kde.org/stable/release-service/20.04.0/src/knights-20.04.0.tar.xz.sig
-Summary  : Chess board by KDE with XBoard protocol support
+Version  : 20.04.1
+Release  : 18
+URL      : https://download.kde.org/stable/release-service/20.04.1/src/knights-20.04.1.tar.xz
+Source0  : https://download.kde.org/stable/release-service/20.04.1/src/knights-20.04.1.tar.xz
+Source1  : https://download.kde.org/stable/release-service/20.04.1/src/knights-20.04.1.tar.xz.sig
+Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0 GPL-3.0
 Requires: knights-bin = %{version}-%{release}
@@ -19,18 +19,15 @@ Requires: knights-license = %{version}-%{release}
 Requires: knights-locales = %{version}-%{release}
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
+BuildRequires : extra-cmake-modules-data
 BuildRequires : kplotting-dev
 BuildRequires : libkdegames-dev
 BuildRequires : plasma-framework-dev
+BuildRequires : qtspeech-dev
 
 %description
-###############################################################
-General information
-###############################################################
-https://github.com/google/sanitizers/wiki
-http://clang.llvm.org/docs/index.html
-https://llvm.org/svn/llvm-project/compiler-rt/trunk/lib/asan/scripts/asan_symbolize.py
-http://developerblog.redhat.com/2014/10/16/gcc-undefined-behavior-sanitizer-ubsan/
+Sound files taken from pychess (http://pychess.org/).
+Original files were renamed as follows:
 
 %package bin
 Summary: bin components for the knights package.
@@ -75,36 +72,35 @@ locales components for the knights package.
 
 
 %prep
-%setup -q -n knights-20.04.0
-cd %{_builddir}/knights-20.04.0
+%setup -q -n knights-20.04.1
+cd %{_builddir}/knights-20.04.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1587690698
+export SOURCE_DATE_EPOCH=1589841914
 mkdir -p clr-build
 pushd clr-build
-# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
 export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %cmake ..
 make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1587690698
+export SOURCE_DATE_EPOCH=1589841914
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/knights
-cp %{_builddir}/knights-20.04.0/LICENSE %{buildroot}/usr/share/package-licenses/knights/06877624ea5c77efe3b7e39b0f909eda6e25a4ec
-cp %{_builddir}/knights-20.04.0/sounds/LICENSE %{buildroot}/usr/share/package-licenses/knights/8624bcdae55baeef00cd11d5dfcfa60f68710a02
+cp %{_builddir}/knights-20.04.1/LICENSE %{buildroot}/usr/share/package-licenses/knights/06877624ea5c77efe3b7e39b0f909eda6e25a4ec
+cp %{_builddir}/knights-20.04.1/sounds/LICENSE %{buildroot}/usr/share/package-licenses/knights/8624bcdae55baeef00cd11d5dfcfa60f68710a02
 pushd clr-build
 %make_install
 popd
