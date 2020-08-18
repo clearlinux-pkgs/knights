@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : knights
-Version  : 20.04.2
-Release  : 19
-URL      : https://download.kde.org/stable/release-service/20.04.2/src/knights-20.04.2.tar.xz
-Source0  : https://download.kde.org/stable/release-service/20.04.2/src/knights-20.04.2.tar.xz
-Source1  : https://download.kde.org/stable/release-service/20.04.2/src/knights-20.04.2.tar.xz.sig
+Version  : 20.08.0
+Release  : 20
+URL      : https://download.kde.org/stable/release-service/20.08.0/src/knights-20.08.0.tar.xz
+Source0  : https://download.kde.org/stable/release-service/20.08.0/src/knights-20.08.0.tar.xz
+Source1  : https://download.kde.org/stable/release-service/20.08.0/src/knights-20.08.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0 GPL-3.0
@@ -72,15 +72,15 @@ locales components for the knights package.
 
 
 %prep
-%setup -q -n knights-20.04.2
-cd %{_builddir}/knights-20.04.2
+%setup -q -n knights-20.08.0
+cd %{_builddir}/knights-20.08.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1591897088
+export SOURCE_DATE_EPOCH=1597789603
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -92,15 +92,15 @@ export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %cmake ..
-make  %{?_smp_mflags}  VERBOSE=1
+make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1591897088
+export SOURCE_DATE_EPOCH=1597789603
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/knights
-cp %{_builddir}/knights-20.04.2/LICENSE %{buildroot}/usr/share/package-licenses/knights/06877624ea5c77efe3b7e39b0f909eda6e25a4ec
-cp %{_builddir}/knights-20.04.2/sounds/LICENSE %{buildroot}/usr/share/package-licenses/knights/8624bcdae55baeef00cd11d5dfcfa60f68710a02
+cp %{_builddir}/knights-20.08.0/LICENSE %{buildroot}/usr/share/package-licenses/knights/06877624ea5c77efe3b7e39b0f909eda6e25a4ec
+cp %{_builddir}/knights-20.08.0/sounds/LICENSE %{buildroot}/usr/share/package-licenses/knights/8624bcdae55baeef00cd11d5dfcfa60f68710a02
 pushd clr-build
 %make_install
 popd
@@ -148,22 +148,7 @@ popd
 
 %files doc
 %defattr(0644,root,root,0755)
-/usr/share/doc/HTML/ca/knights/Knights-board-setup.png
-/usr/share/doc/HTML/ca/knights/Knights-board.png
-/usr/share/doc/HTML/ca/knights/Knights-castle-kingside.png
-/usr/share/doc/HTML/ca/knights/Knights-castle-queenside.png
-/usr/share/doc/HTML/ca/knights/Knights-danger.png
 /usr/share/doc/HTML/ca/knights/Knights-engines.png
-/usr/share/doc/HTML/ca/knights/Knights-enpassant.png
-/usr/share/doc/HTML/ca/knights/Knights-lastmove.png
-/usr/share/doc/HTML/ca/knights/Knights-move-bishop.png
-/usr/share/doc/HTML/ca/knights/Knights-move-king.png
-/usr/share/doc/HTML/ca/knights/Knights-move-knight.png
-/usr/share/doc/HTML/ca/knights/Knights-move-limits.png
-/usr/share/doc/HTML/ca/knights/Knights-move-pawn.png
-/usr/share/doc/HTML/ca/knights/Knights-move-queen.png
-/usr/share/doc/HTML/ca/knights/Knights-move-rook.png
-/usr/share/doc/HTML/ca/knights/Knights-moving-queen.png
 /usr/share/doc/HTML/ca/knights/Knights-newgame-dialog.png
 /usr/share/doc/HTML/ca/knights/Knights-server-account.png
 /usr/share/doc/HTML/ca/knights/Knights-server-challenges.png
